@@ -8,8 +8,8 @@ Práctica de programación que evalúa:
 - Sentencias iterativas
 - Manipulación de strings
 
-Autor: [Nombre del alumno]
-Fecha: [Fecha]
+Autor: Alexis Aparicio Mateos
+Fecha: 07-11-2025
 """
 
 def limpiar_pantalla():
@@ -66,7 +66,6 @@ def solicitar_letra(letras_usadas):
     # - Verificar que no esté en letras_usadas (operador 'in')
     # - Convertir a mayúsculas (upper())
 
-
     letra_valida = False
     while not letra_valida:
         letra = input("Introduce una letra: ")
@@ -96,9 +95,9 @@ def mostrar_estado(palabra_oculta, intentos, letras_usadas):
     # - Imprimir la palabra con espacios entre caracteres
     # - Imprimir las letras usadas
 
-    intentos = 5
-
-
+    print(f"\nIntentos restantes: {intentos}")
+    print(f"Palabra: {palabra_oculta}")
+    print(f"Letras usadas: {letras_usadas}\n")
 
 def actualizar_palabra_oculta(palabra, palabra_oculta, letra):
     """
@@ -147,9 +146,6 @@ def jugar():
     juego_terminado = False
 
     print("Jugador 2: ¡Adivina la palabra!\n")
-    print(f"Intentos restantes: {intentos}")
-    print(f"Palabra: {palabra_oculta}")
-    print(f"Letras usadas: {letras_usadas}")
 
     # TODO: Bucle principal del juego
     # - Mientras haya intentos y el juego no haya terminado:
@@ -165,16 +161,18 @@ def jugar():
     #      - Mostrar mensaje de fallo
 
     while intentos > 0:
-        solicitar_letra(letras_usadas)
         mostrar_estado(palabra_oculta,intentos,letras_usadas)
         solicitar_letra(letras_usadas)
+        intentos -=1
 
-    
+
     # TODO: Mostrar mensaje final
-    # - Si ganó: mostrar felicitación y la palabra
+    # - Si ganó: mostrar felicitación y la palabras
     # - Si perdió: mostrar mensaje de derrota y la palabra correcta
-    pass
-
+    if palabra_oculta == palabra:
+        print(f"¡FELICIDADES! Has adivinado la palabra: {palabra}")
+    else:
+        print(f"¡GAME OVER! Te has quedado sin intentos.\nLa palabra era: {palabra}")
 
 def main():
     """
@@ -186,7 +184,6 @@ def main():
     jugar_otra_vez = input("\n¿Quieres jugar otra vez? (s/n): ")
     if jugar_otra_vez.lower() == 's':
          main()
-
 
 if __name__ == "__main__":
     main()
