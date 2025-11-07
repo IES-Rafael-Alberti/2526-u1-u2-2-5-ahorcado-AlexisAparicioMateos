@@ -78,6 +78,7 @@ def solicitar_letra(letras_usadas):
         else:
             letra_valida = True
     letra = letra.upper()
+    letras_usadas.append(letra)
     return letra
 
 
@@ -116,7 +117,27 @@ def actualizar_palabra_oculta(palabra, palabra_oculta, letra):
     # - Usar enumerate() para obtener índice y carácter
     # - Si el carácter coincide con la letra, reemplazar en palabra_oculta
     # - Puedes convertir palabra_oculta a lista, modificar y volver a string
-    pass
+
+    palabra = list(palabra)
+    for indice,valor in enumerate(palabra, start=1):
+        print(indice,valor)
+
+def mostrar_muñeco(intentos):
+    if intentos == 4:
+        print("▄")
+    if intentos == 3:
+        print("▄")
+        print("┼")
+    if intentos == 2:
+        print(" ▄")
+        print("┌┼")
+    if intentos == 1:
+        print(" ▄")
+        print("┌┼┐")
+    if intentos == 0:
+        print(" ▄")
+        print("┌┼┐")
+        print(" /\\")
 
 
 def jugar():
@@ -163,8 +184,23 @@ def jugar():
     while intentos > 0:
         mostrar_estado(palabra_oculta,intentos,letras_usadas)
         solicitar_letra(letras_usadas)
-        intentos -=1
 
+        intentos -=1
+        mostrar_muñeco(intentos)
+        """
+        letra = letras_usadas
+        palabra = list(palabra)
+        for indice,valor in enumerate(palabra, start=1):
+            print(indice, valor)
+
+        if letra == valor:
+            print(f"¡Bien! La letra {letra} está en la palabra.!")
+        else:
+            print("¡Letra incorrecta!")
+        """
+
+
+    mostrar_estado(palabra_oculta,intentos,letras_usadas)
 
     # TODO: Mostrar mensaje final
     # - Si ganó: mostrar felicitación y la palabras
